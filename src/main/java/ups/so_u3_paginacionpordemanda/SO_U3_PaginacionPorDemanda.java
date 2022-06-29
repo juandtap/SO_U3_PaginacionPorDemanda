@@ -12,6 +12,7 @@ package ups.so_u3_paginacionpordemanda;
 public class SO_U3_PaginacionPorDemanda {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        var pages = new Pages();
+        pages.setVisible(true);
     }
 }
