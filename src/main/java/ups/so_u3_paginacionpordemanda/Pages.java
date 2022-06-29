@@ -102,11 +102,13 @@ public class Pages extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       setReferenceList();
+        setReferenceList();
         System.out.println("numero de marcos: ");
         System.out.println(getFrameSize());
         System.out.println("Lista de referencias");
         System.out.println(this.referenceList);
+        var replaceplan = new ReplacePlan(new Frame(getFrameSize()), this.referenceList);
+        replaceplan.fifo();
     }//GEN-LAST:event_jButton1ActionPerformed
     
     private void setReferenceList(){

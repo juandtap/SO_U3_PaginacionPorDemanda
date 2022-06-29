@@ -18,6 +18,10 @@ public class Frame {
         this.referenceArray = new int[size];
     }
 
+    public void add(int ref, int pos){
+        this.referenceArray[pos] = ref;
+    }
+    
     public int getSize() {
         return size;
     }
