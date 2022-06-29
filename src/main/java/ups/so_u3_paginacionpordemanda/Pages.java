@@ -4,6 +4,8 @@
  */
 package ups.so_u3_paginacionpordemanda;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Diego
@@ -13,8 +15,13 @@ public class Pages extends javax.swing.JFrame {
     /**
      * Creates new form Pages
      */
+    private ArrayList<Reference> referenceList;
+    private Frame frame;
+    
     public Pages() {
         initComponents();
+        this.referenceList = new ArrayList<>();
+        
     }
 
     /**
@@ -39,6 +46,11 @@ public class Pages extends javax.swing.JFrame {
         jLabel1.setText("Ingrese Referencias");
 
         jButton1.setText("Go");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Numero Marcos");
 
@@ -89,6 +101,43 @@ public class Pages extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       setReferenceList();
+        System.out.println("numero de marcos: ");
+        System.out.println(getFrameSize());
+        System.out.println("Lista de referencias");
+        System.out.println(this.referenceList);
+    }//GEN-LAST:event_jButton1ActionPerformed
+    
+    private void setReferenceList(){
+        this.referenceList.clear();
+        String refString = jTextField1.getText().trim();
+        refString = refString + ",";
+        int tmpRefNum = 0;
+        String tmpRefStr = "";
+        for (int i = 0; i < refString.length(); i++) {
+            if(Character.isDigit(refString.charAt(i))){
+                tmpRefStr = tmpRefStr + refString.charAt(i);
+            } else{
+                tmpRefNum = Integer.parseInt(tmpRefStr);
+                
+                this.referenceList.add(new Reference(tmpRefNum));
+                
+                tmpRefNum = 0;
+                tmpRefStr = "";
+            }
+        }
+        
+    }
+    
+    
+    
+    private int getFrameSize(){
+        
+       return Integer.parseInt(jComboBox1.getSelectedItem().toString());
+        
+        
+    }
     /**
      * @param args the command line arguments
      */
