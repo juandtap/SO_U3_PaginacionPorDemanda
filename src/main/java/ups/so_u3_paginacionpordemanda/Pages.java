@@ -58,6 +58,7 @@ public class Pages extends javax.swing.JFrame {
 
         jTextArea1.setBackground(java.awt.Color.black);
         jTextArea1.setColumns(20);
+        jTextArea1.setForeground(java.awt.Color.white);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
@@ -108,8 +109,11 @@ public class Pages extends javax.swing.JFrame {
         System.out.println("Lista de referencias");
         System.out.println(this.referenceList);
         var replaceplan = new ReplacePlan(new Frame(getFrameSize()), this.referenceList);
-        replaceplan.fifo();
+        jTextArea1.setText(replaceplan.fifo());
+       
     }//GEN-LAST:event_jButton1ActionPerformed
+    
+    
     
     private void setReferenceList(){
         this.referenceList.clear();
