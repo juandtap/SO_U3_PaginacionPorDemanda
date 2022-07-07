@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package ups.so_u3_paginacionpordemanda;
 
 /**
@@ -11,14 +8,14 @@ package ups.so_u3_paginacionpordemanda;
 public class Frame {
     
     private int size;
-    private int[] referenceArray;
+    private Reference[] referenceArray;
 
     public Frame(int size) {
         this.size = size;
-        this.referenceArray = new int[size];
+        this.referenceArray = new Reference[size];
     }
 
-    public void add(int ref, int pos){
+    public void add(Reference ref, int pos){
         this.referenceArray[pos] = ref;
     }
     
@@ -30,11 +27,11 @@ public class Frame {
         this.size = size;
     }
 
-    public int[] getReferenceArray() {
+    public Reference[] getReferenceArray() {
         return referenceArray;
     }
 
-    public void setReferenceArray(int[] referenceArray) {
+    public void setReferenceArray(Reference[] referenceArray) {
         this.referenceArray = referenceArray;
     }
 

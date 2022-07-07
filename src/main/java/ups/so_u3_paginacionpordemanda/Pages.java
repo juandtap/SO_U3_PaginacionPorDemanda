@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package ups.so_u3_paginacionpordemanda;
 
 import java.util.ArrayList;
@@ -16,7 +13,7 @@ public class Pages extends javax.swing.JFrame {
      * Creates new form Pages
      */
     private ArrayList<Reference> referenceList;
-    private Frame frame;
+    //private Frame frame;
     
     public Pages() {
         initComponents();
@@ -45,6 +42,8 @@ public class Pages extends javax.swing.JFrame {
 
         jLabel1.setText("Ingrese Referencias");
 
+        jTextField1.setText("1,2,3,4,2,1,5,6,2,1,2,3,7,6,3,2,1,2,3,6");
+
         jButton1.setText("Go");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -55,6 +54,7 @@ public class Pages extends javax.swing.JFrame {
         jLabel2.setText("Numero Marcos");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "5", "7" }));
+        jComboBox1.setSelectedIndex(2);
 
         jTextArea1.setBackground(java.awt.Color.black);
         jTextArea1.setColumns(20);
@@ -95,8 +95,8 @@ public class Pages extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -110,7 +110,7 @@ public class Pages extends javax.swing.JFrame {
         System.out.println(this.referenceList);
         var replaceplan = new ReplacePlan(new Frame(getFrameSize()), this.referenceList);
         jTextArea1.setText(replaceplan.fifo());
-       
+        //replaceplan.optim();
     }//GEN-LAST:event_jButton1ActionPerformed
     
     
@@ -138,11 +138,8 @@ public class Pages extends javax.swing.JFrame {
     
     
     
-    private int getFrameSize(){
-        
+    private int getFrameSize(){    
        return Integer.parseInt(jComboBox1.getSelectedItem().toString());
-        
-        
     }
     /**
      * @param args the command line arguments

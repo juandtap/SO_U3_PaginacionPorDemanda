@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package ups.so_u3_paginacionpordemanda;
 
 /**
@@ -10,19 +7,19 @@ package ups.so_u3_paginacionpordemanda;
  */
 public class Reference {
     private int id;
-    private int age;
+    private int use;
 
     public Reference(int id) {
         this.id = id;
-        this.age = 0;
+        this.use = 0;
     }
     
     public void resetAge(){
-        this.age = 0;
+        this.use = 0;
     }
     
     public void increaseAge(){
-        this.age++;
+        this.use++;
     }
 
     public int getId() {
@@ -33,17 +30,17 @@ public class Reference {
         this.id = id;
     }
 
-    public int getAge() {
-        return age;
+    public int getUse() {
+        return use;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setUse(int use) {
+        this.use = use;
     }
 
     @Override
     public String toString() {
-        return "Reference{" + "id=" + id + ", age=" + age + '}';
+        return "Reference{" + "id=" + id + ", uso=" + use + '}';
     }
     
     
