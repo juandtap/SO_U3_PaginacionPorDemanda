@@ -74,48 +74,113 @@ public class ReplacePlan {
 
                 } else {
 
-                    count = 0;
+                    count = getNextLessUsed(referenceList, i+1);
                     frame.add(this.referenceList.get(i), count);
-                    count++;
+                    count = frame.getSize();
                     pageFail++;
                    
                 }
             }  
         }
         
+        System.out.println("optimo: ");
+        for (var re: this.frame.getReferenceArray()) {
+            System.out.println("| "+re.getId()+" |");
+        }
+        System.out.println("fallos de pagina : "+pageFail);
     }
     
     private int getNextLessUsed(ArrayList<Reference> refList, int pos){
         
-        for (int i = pos; i < refList.size(); i++) {
-            for (int j = 0; j < this.frame.getSize(); j++) {
-                if (this.frame.getReferenceArray()[j].getId() == refList.get(i).getId()) {
+        int sum;
+        
+        for (int i = 0; i < this.frame.getSize(); i++) {
+            sum = 0;
+            System.out.println("entro aca "+i);
+            for (int j = pos; j < refList.size(); j++) {
+                
+                if (this.frame.getReferenceArray()[i].getId() != refList.get(j).getId()) {
                     
+                    this.frame.getReferenceArray()[i].setUse(++sum);
+                    
+                } else{
+                    System.out.println("num ocurrencias antes: "+sum+ " pos: "+j);
+                    break;
                 }
             }
         }
         
         
+        var referenceToReplace = getNumMax(this.frame.getReferenceArray());
         
-        return 0;
+        
+        resetUseRefFrame();
+        System.out.println(">>>Referencia  a reemplazar "+referenceToReplace.getId());
+        int posReeplace = positionToReplace(referenceToReplace);
+        System.out.println(">>> POsicion a reemplazar : "+posReeplace);
+        return posReeplace;
+    }
+    
+    
+    private int positionToReplace(Reference ref){
+        
+        int pos2replace = 0;
+        
+        for (int i = 0; i < frame.getSize(); i++) {
+            if (frame.getReferenceArray()[i] == ref) {
+                pos2replace = i;
+            }
+        }
+        
+        return pos2replace;
+    }
+    
+    private Reference getNumMax(Reference[] arrayRef){
+        
+        for (var a: arrayRef) {
+            System.out.println(a.getId() + " : uso "+a.getUse());
+        }
+        
+        int max = -1;
+        
+        for (var ref: arrayRef) {
+            if (ref.getUse() > max) {
+                max = ref.getUse();
+            }
+        }
+        
+        System.out.println("maximo "+max);
+        
+        for (var ref: arrayRef) {
+            if (ref.getUse() == max) {
+                System.out.println("maxima referencia "+ref);
+                return ref;
+            }
+        }
+        
+        return null;
     }
     
     
     private boolean exists(Reference reference){
         
-             for (int i = 0; i < this.frame.getSize(); i++) {
-                    if (this.frame.getReferenceArray()[i] != null) {
-                        if (reference.getId() == this.frame.getReferenceArray()[i].getId()) {
-                                return true;
-                        }
-                    }
+        for (int i = 0; i < this.frame.getSize(); i++) {
+            if (this.frame.getReferenceArray()[i] != null) {
+                if (reference.getId() == this.frame.getReferenceArray()[i].getId()) {
+                    return true;
+                }
             }
+        }
         return false;
     }
     
     
     
-    
+    private void resetUseRefFrame(){
+        for (var r  : frame.getReferenceArray()) {
+            r.resetUse();
+        }
+    }
 
     
     

@@ -14,13 +14,10 @@ public class Reference {
         this.use = 0;
     }
     
-    public void resetAge(){
+    public void resetUse(){
         this.use = 0;
     }
     
-    public void increaseAge(){
-        this.use++;
-    }
 
     public int getId() {
         return id;
