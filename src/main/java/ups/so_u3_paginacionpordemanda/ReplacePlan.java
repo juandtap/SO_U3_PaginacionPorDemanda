@@ -95,6 +95,78 @@ public class ReplacePlan {
         return optimResult;
     }
     
+    
+    public String lru(){
+        pageFail = 0;
+        int count = 0;
+        
+        for (int i = 0; i < this.referenceList.size(); i++) {
+
+            if (!exists(this.referenceList.get(i))) {
+                
+                if (count < frame.getSize()) {
+                    
+                    frame.add(this.referenceList.get(i), count);
+                    count++;
+                    pageFail++;
+
+                } else {
+
+                    count = getLessRecentUsed(referenceList, i-1);
+                    frame.add(this.referenceList.get(i), count);
+                    count = frame.getSize();
+                    pageFail++;
+                   
+                }
+            }  
+        }
+        
+        String refs = "";
+        
+       
+        for (var re: this.frame.getReferenceArray()) {
+            refs = refs + "|_"+re.getId()+"_|"+"\n\t";
+        }
+        
+        String lruResult = "LRU:\n\t" +refs+"\nNumero de Fallos de pagina: "+pageFail;
+        System.out.println("fallos de pagina : "+pageFail);
+        return lruResult;
+    }
+    
+    
+     private int getLessRecentUsed(ArrayList<Reference> refList, int pos){
+        
+        int sum;
+        
+        for (int i = 0; i < this.frame.getSize(); i++) {
+            sum = 0;
+            
+            for (int j = pos; j >= 0; j--) {
+                
+                if (this.frame.getReferenceArray()[i].getId() != refList.get(j).getId()) {
+                    
+                    this.frame.getReferenceArray()[i].setUse(++sum);
+                    
+                } else{
+                   
+                    break;
+                }
+            }
+        }
+        
+        
+        var referenceToReplace = getNumMax(this.frame.getReferenceArray());
+        
+        
+        resetUseRefFrame();
+        System.out.println(">>>Referencia  a reemplazar :"+referenceToReplace.getId());
+        int posReeplace = positionToReplace(referenceToReplace);
+        System.out.println(">>> Posicion a reemplazar : "+posReeplace);
+        return posReeplace;
+    }
+    
+    
+    
     private int getNextLessUsed(ArrayList<Reference> refList, int pos){
         
         int sum;
@@ -153,8 +225,6 @@ public class ReplacePlan {
                 max = ref.getUse();
             }
         }
-        
-        System.out.println("maximo "+max);
         
         for (var ref: arrayRef) {
             if (ref.getUse() == max) {

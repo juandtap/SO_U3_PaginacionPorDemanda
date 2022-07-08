@@ -110,7 +110,8 @@ public class Pages extends javax.swing.JFrame {
         System.out.println(this.referenceList);
         var replaceplan = new ReplacePlan(new Frame(getFrameSize()), this.referenceList);
         //jTextArea1.setText(replaceplan.fifo());
-        jTextArea1.setText(replaceplan.optim());
+        //jTextArea1.setText(replaceplan.optim());
+        jTextArea1.setText(replaceplan.lru());
     }//GEN-LAST:event_jButton1ActionPerformed
     
     
