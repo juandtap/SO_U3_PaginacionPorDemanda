@@ -3,6 +3,7 @@ package ups.so_u3_paginacionpordemanda;
 
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  *
@@ -17,6 +18,10 @@ public class ReplacePlan {
         this.frame = frame;
         this.referenceList = referenceList;
         
+    }
+    
+    public void cleanFrame(){
+        Arrays.fill(frame.getReferenceArray(), null);
     }
     
     public String fifo(){

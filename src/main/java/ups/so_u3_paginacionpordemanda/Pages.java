@@ -109,9 +109,11 @@ public class Pages extends javax.swing.JFrame {
         System.out.println("Lista de referencias");
         System.out.println(this.referenceList);
         var replaceplan = new ReplacePlan(new Frame(getFrameSize()), this.referenceList);
-        //jTextArea1.setText(replaceplan.fifo());
-        //jTextArea1.setText(replaceplan.optim());
-        jTextArea1.setText(replaceplan.lru());
+        jTextArea1.setText(replaceplan.fifo());
+        replaceplan.cleanFrame();
+        jTextArea1.append("\n"+replaceplan.optim());
+        replaceplan.cleanFrame();
+        jTextArea1.append("\n"+replaceplan.lru());
     }//GEN-LAST:event_jButton1ActionPerformed
     
     
