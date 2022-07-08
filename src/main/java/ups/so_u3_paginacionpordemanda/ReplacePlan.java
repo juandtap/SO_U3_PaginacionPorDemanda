@@ -57,7 +57,7 @@ public class ReplacePlan {
         return fifoResult;
     }
     
-    public void optim(){
+    public String optim(){
         
         pageFail = 0;
         int count = 0;
@@ -83,11 +83,16 @@ public class ReplacePlan {
             }  
         }
         
-        System.out.println("optimo: ");
+        String refs = "";
+        
+       
         for (var re: this.frame.getReferenceArray()) {
-            System.out.println("| "+re.getId()+" |");
+            refs = refs + "|_"+re.getId()+"_|"+"\n\t";
         }
+        
+        String optimResult = "OPTIMO:\n\t" +refs+"\nNumero de Fallos de pagina: "+pageFail;
         System.out.println("fallos de pagina : "+pageFail);
+        return optimResult;
     }
     
     private int getNextLessUsed(ArrayList<Reference> refList, int pos){
@@ -96,7 +101,7 @@ public class ReplacePlan {
         
         for (int i = 0; i < this.frame.getSize(); i++) {
             sum = 0;
-            System.out.println("entro aca "+i);
+            
             for (int j = pos; j < refList.size(); j++) {
                 
                 if (this.frame.getReferenceArray()[i].getId() != refList.get(j).getId()) {
@@ -104,7 +109,7 @@ public class ReplacePlan {
                     this.frame.getReferenceArray()[i].setUse(++sum);
                     
                 } else{
-                    System.out.println("num ocurrencias antes: "+sum+ " pos: "+j);
+                   
                     break;
                 }
             }
@@ -115,9 +120,9 @@ public class ReplacePlan {
         
         
         resetUseRefFrame();
-        System.out.println(">>>Referencia  a reemplazar "+referenceToReplace.getId());
+        System.out.println(">>>Referencia  a reemplazar :"+referenceToReplace.getId());
         int posReeplace = positionToReplace(referenceToReplace);
-        System.out.println(">>> POsicion a reemplazar : "+posReeplace);
+        System.out.println(">>> Posicion a reemplazar : "+posReeplace);
         return posReeplace;
     }
     
