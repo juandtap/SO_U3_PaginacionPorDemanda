@@ -29,6 +29,8 @@ public class ReplacePlan {
        
         pageFail = 0;
         
+        String refs = "";
+        
         for (int i = 0; i < this.referenceList.size(); i++) {
 
             if (!exists(this.referenceList.get(i))) {
@@ -47,17 +49,26 @@ public class ReplacePlan {
                     pageFail++;
                     
                 }
-            }  
+                
+                for (var r : this.frame.getReferenceArray()) {
+                    if (r == null) {
+                        refs = refs + "|___|" + "\n\t";
+                    } else {
+                        refs = refs + "|_" + r.getId() + "_|" + "\n\t";
+                    }
+                }
+                refs = refs + "\n\t";
+            }
+            
+            
+            
         }
         
-        String refs = "";
-        for (var r : this.frame.getReferenceArray()) {
-            refs = refs + "|_"+r.getId()+"_|"+"\n\t";
-        }
         
         
+       
         
-        String fifoResult = "FIFO ("+frame.getSize()+"):\n\t"+refs+"\nNumero de Fallos de pagina: "+pageFail ;
+        String fifoResult = "FIFO ("+frame.getSize()+"):\n\t"+refs+"\nNumero de Fallos de pagina: "+pageFail+"\n" ;
         
         return fifoResult;
     }
@@ -66,6 +77,7 @@ public class ReplacePlan {
         System.out.println("Algoritmo Optimo");
         pageFail = 0;
         int count = 0;
+        String refs = "";
         
         for (int i = 0; i < this.referenceList.size(); i++) {
 
@@ -85,17 +97,23 @@ public class ReplacePlan {
                     pageFail++;
                    
                 }
-            }  
+                
+                for (var r : this.frame.getReferenceArray()) {
+                    if (r == null) {
+                        refs = refs + "|___|" + "\n\t";
+                    } else {
+                        refs = refs + "|_" + r.getId() + "_|" + "\n\t";
+                    }
+                }
+                refs = refs + "\n\t";
+            }
+            
+            
         }
-        
-        String refs = "";
         
        
-        for (var re: this.frame.getReferenceArray()) {
-            refs = refs + "|_"+re.getId()+"_|"+"\n\t";
-        }
         
-        String optimResult = "OPTIMO ("+frame.getSize()+") :\n\t" +refs+"\nNumero de Fallos de pagina: "+pageFail;
+        String optimResult = "OPTIMO ("+frame.getSize()+") :\n\t" +refs+"\nNumero de Fallos de pagina: "+pageFail+"\n";
         System.out.println("fallos de pagina : "+pageFail);
         return optimResult;
     }
@@ -105,6 +123,7 @@ public class ReplacePlan {
         System.out.println("Algoritmo LRU");
         pageFail = 0;
         int count = 0;
+        String refs = "";
         
         for (int i = 0; i < this.referenceList.size(); i++) {
 
@@ -124,17 +143,23 @@ public class ReplacePlan {
                     pageFail++;
                    
                 }
+                
+                for (var r : this.frame.getReferenceArray()) {
+                    if (r == null) {
+                        refs = refs + "|___|" + "\n\t";
+                    } else {
+                        refs = refs + "|_" + r.getId() + "_|" + "\n\t";
+                    }
+                }
+                refs = refs + "\n\t";
             }  
         }
         
-        String refs = "";
+        
         
        
-        for (var re: this.frame.getReferenceArray()) {
-            refs = refs + "|_"+re.getId()+"_|"+"\n\t";
-        }
         
-        String lruResult = "LRU ("+frame.getSize()+"):\n\t" +refs+"\nNumero de Fallos de pagina: "+pageFail;
+        String lruResult = "LRU ("+frame.getSize()+"):\n\t" +refs+"\nNumero de Fallos de pagina: "+pageFail+"\n";
         System.out.println("fallos de pagina : "+pageFail);
         return lruResult;
     }
