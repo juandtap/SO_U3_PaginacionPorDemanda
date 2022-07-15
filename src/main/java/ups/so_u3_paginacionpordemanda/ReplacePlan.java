@@ -57,13 +57,13 @@ public class ReplacePlan {
         
         
         
-        String fifoResult = "FIFO:\n\t"+refs+"\nNumero de Fallos de pagina: "+pageFail ;
+        String fifoResult = "FIFO ("+frame.getSize()+"):\n\t"+refs+"\nNumero de Fallos de pagina: "+pageFail ;
         
         return fifoResult;
     }
     
     public String optim(){
-        
+        System.out.println("Algoritmo Optimo");
         pageFail = 0;
         int count = 0;
         
@@ -95,13 +95,14 @@ public class ReplacePlan {
             refs = refs + "|_"+re.getId()+"_|"+"\n\t";
         }
         
-        String optimResult = "OPTIMO:\n\t" +refs+"\nNumero de Fallos de pagina: "+pageFail;
+        String optimResult = "OPTIMO ("+frame.getSize()+") :\n\t" +refs+"\nNumero de Fallos de pagina: "+pageFail;
         System.out.println("fallos de pagina : "+pageFail);
         return optimResult;
     }
     
     
     public String lru(){
+        System.out.println("Algoritmo LRU");
         pageFail = 0;
         int count = 0;
         
@@ -133,7 +134,7 @@ public class ReplacePlan {
             refs = refs + "|_"+re.getId()+"_|"+"\n\t";
         }
         
-        String lruResult = "LRU:\n\t" +refs+"\nNumero de Fallos de pagina: "+pageFail;
+        String lruResult = "LRU ("+frame.getSize()+"):\n\t" +refs+"\nNumero de Fallos de pagina: "+pageFail;
         System.out.println("fallos de pagina : "+pageFail);
         return lruResult;
     }
